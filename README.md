@@ -1,2 +1,2 @@
 # copas
-Copas en wvwntos
+Copas en eventos
