@@ -22,8 +22,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Agregar evento de clic al botón "Reset"
     resetearBtn.addEventListener("click", function() {
-        bebidasLista.innerHTML = ""; // Eliminar todos los elementos de la lista de bebidas
-        bebidasPorMesa[currentTable] = []; // Borrar las bebidas de la mesa actual
+        bebidasPorMesa[currentTable].forEach(bebida => {
+            if (bebidasPredeterminadas.includes(bebida.nombre)) {
+                bebida.cantidad = 0; // Restablecer las cantidades de las bebidas predeterminadas a cero
+            } else {
+                bebidasPorMesa[currentTable] = bebidasPorMesa[currentTable].filter(beb => beb !== bebida); // Eliminar las bebidas no predeterminadas
+            }
+        });
+        actualizarListaBebidas();
     });
 
     confirmarBtn.addEventListener("click", function() {
