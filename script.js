@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const bebidasPorMesa = {}; // Objeto para almacenar las bebidas de cada mesa
+    const bebidasPorMesa = JSON.parse(localStorage.getItem('bebidasPorMesa')) || {}; // Restaurar datos del localStorage si existen
     const bebidasLista = document.getElementById("bebidas-lista");
     const resetearBtn = document.getElementById("resetear-btn");
     const modal = document.getElementById("modal");
@@ -15,18 +15,16 @@ document.addEventListener("DOMContentLoaded", function() {
         menu.classList.toggle("show-menu");
     }
 
-    // Agregar bebidas predeterminadas
     function agregarBebidasPredeterminadas(mesa) {
         bebidasPorMesa[mesa] = bebidasPredeterminadas.map(bebida => ({ nombre: bebida, cantidad: 0 }));
     }
 
-    // Agregar evento de clic al botón "Reset"
     resetearBtn.addEventListener("click", function() {
         bebidasPorMesa[currentTable].forEach(bebida => {
             if (bebidasPredeterminadas.includes(bebida.nombre)) {
-                bebida.cantidad = 0; // Restablecer las cantidades de las bebidas predeterminadas a cero
+                bebida.cantidad = 0;
             } else {
-                bebidasPorMesa[currentTable] = bebidasPorMesa[currentTable].filter(beb => beb !== bebida); // Eliminar las bebidas no predeterminadas
+                bebidasPorMesa[currentTable] = bebidasPorMesa[currentTable].filter(beb => beb !== bebida);
             }
         });
         actualizarListaBebidas();
@@ -35,39 +33,36 @@ document.addEventListener("DOMContentLoaded", function() {
     confirmarBtn.addEventListener("click", function() {
         const bebidaNombre = bebidaInput.value.trim();
         if (bebidaNombre) {
-            // Verificar si existe la mesa en bebidasPorMesa, si no existe, crearla
             if (!bebidasPorMesa[currentTable]) {
                 bebidasPorMesa[currentTable] = [];
             }
             let bebida = bebidasPorMesa[currentTable].find(bebida => bebida.nombre === bebidaNombre);
             if (!bebida) {
-                bebida = { nombre: bebidaNombre, cantidad: 0 }; // Establecer la cantidad inicial en 0
+                bebida = { nombre: bebidaNombre, cantidad: 0 };
                 bebidasPorMesa[currentTable].push(bebida);
             }
             actualizarListaBebidas();
-            bebidaInput.value = ""; // Borrar el contenido del input después de confirmar la bebida
+            bebidaInput.value = "";
         }
     });
 
-    // Manejar el cambio de mesa y agregar bebidas predeterminadas
     document.querySelectorAll(".menu a").forEach(function(link) {
         link.addEventListener("click", function(event) {
             event.preventDefault();
             const mesa = event.target.textContent;
             currentTable = mesa;
             if (!bebidasPorMesa[currentTable]) {
-                agregarBebidasPredeterminadas(currentTable); // Agregar bebidas predeterminadas si aún no están definidas para esta mesa
+                agregarBebidasPredeterminadas(currentTable);
             }
             actualizarListaBebidas();
-            mesaTitulo.textContent = mesa; // Mostrar el nombre de la mesa debajo del título
-            toggleMenu(); // Ocultar el menú emergente al seleccionar una mesa
+            mesaTitulo.textContent = mesa;
+            toggleMenu();
         });
     });
 
-    // Función para actualizar la lista de bebidas según la mesa actual
     function actualizarListaBebidas() {
-        bebidasLista.innerHTML = ""; // Limpiar la lista de bebidas
-        const bebidas = bebidasPorMesa[currentTable] || []; // Obtener las bebidas de la mesa actual
+        bebidasLista.innerHTML = "";
+        const bebidas = bebidasPorMesa[currentTable] || [];
         bebidas.forEach(function(bebida) {
             const li = document.createElement("li");
             const bebidaSpan = document.createElement("span");
@@ -85,14 +80,13 @@ document.addEventListener("DOMContentLoaded", function() {
             btnSumar.classList.add("btn-sumar");
             btnRestar.classList.add("btn-restar");
 
-            // Verificar si la bebida es predeterminada o agregada por el usuario
             if (bebidasPredeterminadas.includes(bebida.nombre)) {
-                btnDelete.style.display = "none"; // Ocultar el botón "X" para las bebidas predeterminadas
+                btnDelete.style.display = "none";
             } else {
-                btnDelete.textContent = "X"; // Mostrar el botón "X" para las bebidas agregadas por el usuario
+                btnDelete.textContent = "X";
                 btnDelete.classList.add("btn-delete");
                 btnDelete.addEventListener("click", function() {
-                    bebida.cantidad = 0; // Restablecer la cantidad a 0
+                    bebida.cantidad = 0;
                     const index = bebidasPorMesa[currentTable].indexOf(bebida);
                     if (index !== -1) {
                         bebidasPorMesa[currentTable].splice(index, 1);
@@ -123,11 +117,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
             bebidasLista.appendChild(li);
         });
+
+        // Guardar datos en el localStorage
+        localStorage.setItem('bebidasPorMesa', JSON.stringify(bebidasPorMesa));
     }
 
-    let currentTable = "Taula 1"; // Inicializar la mesa actual
+    let currentTable = "Taula 1";
 
-    // Evento de clic para mostrar/ocultar el menú
     menuBtn.addEventListener("click", toggleMenu);
 
     document.addEventListener("click", function(event) {
@@ -136,6 +132,5 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Actualizar lista de bebidas al cargar la página
     actualizarListaBebidas();
 });
