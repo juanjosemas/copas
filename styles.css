@@ -173,6 +173,7 @@ h1 {
 .menu-btn {
     font-size: 25px;
     opacity: 0.8;
+    border-radius: 25%;
 }
 
 
