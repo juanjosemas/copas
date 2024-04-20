@@ -59,7 +59,7 @@ h1 {
 
 .footer input[type="text"] {
     flex-grow: 1; /* Hace que el input ocupe el espacio disponible */
-    margin-right: 5px; /* Separación entre el input y el botón Confirmar */
+    margin-right: 1px; /* Separación entre el input y el botón Confirmar */
     font-family: Piedra;
 }
 
@@ -67,12 +67,14 @@ h1 {
     flex-shrink: 0; /* Evita que el botón se estire */
     font-size: 1.0em;
     font-weight: bold;
+    border-radius: 15%;
 }
 
 
 .btn-lg {
     font-size: 1.2em;
     font-weight: bold;
+    border-radius: 20%;
 }
 
 .btn-delete {
