@@ -9,34 +9,31 @@
  
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
     
+
 </head>
+
 <body>
-   
+
+<!--Boton menu y titulo de la pagina -->
   <header>
-  
 <button class="menu-btn" onclick="toggleMenu()"><i class="fa fa-bars"></i></button>
 <h1><u><q>Lista de Copas</q></u> <span id="mesa-titulo"></span></h1>
-  
   </header>
-    
 
+    
+<!-- - - - - - - - - - - - - - - - - -->
 <ul id="bebidas-lista">
     <!-- Aquí se agregan dinámicamente las bebidas -->
 </ul>
-
-    <div class="footer">
-    <button id="resetear-btn" class="btn-lg">Reset</button>
-    <input type="text" id="bebida-input" placeholder="Ingresar bebida">
-    <button id="confirmar-btn"><i>Confirmar</i></button>
-    </div>
-
-
-<div id="modal" class="modal">
+<!-- - - - - - - - - - - - - - - - - -->
+   
+<!-- <div id="modal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
-      
-    </div>
 </div>
+</div> -->
+
+
  
   
    <div id="menu" class="menu">
@@ -57,7 +54,18 @@
     <br>
     <u><a href="#">Refrescos</a></u>
    </div>
+   
+ 
+<!-- Pie de pagina, boton reset, confirmar e ingresar bebida -->
+
+  <div class="footer">
+    <button id="resetear-btn" class="btn-lg">Reset</button>
+    <input type="text" id="bebida-input" placeholder="Ingresar bebida">
+    <button id="confirmar-btn"><i>Confirmar</i></button>
+    </div> 
+   
 
 <script src="script.js"></script>
+
 </body>
 </html>
