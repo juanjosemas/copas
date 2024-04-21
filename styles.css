@@ -122,12 +122,12 @@ h1 {
     font-weight: bold;
 }
 
-.close:hover,
+/*.close:hover,
 .close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
-}
+}*/
 
 #bebida-input {
     font-size: 1em; /* Ajusta el tamaño del campo de ingreso de bebida */
