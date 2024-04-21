@@ -19,7 +19,9 @@ document.addEventListener("DOMContentLoaded", function() {
         bebidasPorMesa[mesa] = bebidasPredeterminadas.map(bebida => ({ nombre: bebida, cantidad: 0 }));
     }
 
-    resetearBtn.addEventListener("click", function() {
+  resetearBtn.addEventListener("click", function() {
+    const confirmacion = confirm("¿Quieres borrar esta lista de bebidas?");
+    if (confirmacion) {
         bebidasPorMesa[currentTable].forEach(bebida => {
             if (bebidasPredeterminadas.includes(bebida.nombre)) {
                 bebida.cantidad = 0;
@@ -28,7 +30,10 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
         actualizarListaBebidas();
-    });
+    }
+});
+
+    
 
     confirmarBtn.addEventListener("click", function() {
         const bebidaNombre = bebidaInput.value.trim();
