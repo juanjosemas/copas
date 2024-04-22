@@ -1,27 +1,35 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const bebidasPorMesa = JSON.parse(localStorage.getItem('bebidasPorMesa')) || {}; // Restaurar datos del localStorage si existen
+    const bebidasPorMesa = JSON.parse(localStorage.getItem('bebidasPorMesa')) || {};
     const bebidasLista = document.getElementById("bebidas-lista");
     const resetearBtn = document.getElementById("resetear-btn");
-    const modal = document.getElementById("modal");
+    const modalConfirm = document.getElementById("modal-confirm");
+    const confirmarResetBtn = document.getElementById("confirmar-reset");
+    const cancelarResetBtn = document.getElementById("cancelar-reset");
     const bebidaInput = document.getElementById("bebida-input");
     const confirmarBtn = document.getElementById("confirmar-btn");
-    const closeBtn = document.getElementsByClassName("close")[0];
     const menuBtn = document.querySelector(".menu-btn");
     const menu = document.getElementById("menu");
     const mesaTitulo = document.getElementById("mesa-titulo");
     const bebidasPredeterminadas = ["Coca-cola", "Tonica", "Fanta Naranja", "Fanta Limon", "Sprite", "Coca-cola Zero"];
 
-    function toggleMenu() {
-        menu.classList.toggle("show-menu");
+    function toggleMenu(event) {
+        event.preventDefault();
+        if (!menu.classList.contains("show-menu")) {
+            menu.classList.add("show-menu");
+        } else {
+            menu.classList.remove("show-menu");
+        }
     }
 
     function agregarBebidasPredeterminadas(mesa) {
         bebidasPorMesa[mesa] = bebidasPredeterminadas.map(bebida => ({ nombre: bebida, cantidad: 0 }));
     }
 
-  resetearBtn.addEventListener("click", function() {
-    const confirmacion = confirm("¿Quieres borrar esta lista de bebidas?");
-    if (confirmacion) {
+    resetearBtn.addEventListener("click", function() {
+        modalConfirm.style.display = "block";
+    });
+
+    confirmarResetBtn.addEventListener("click", function() {
         bebidasPorMesa[currentTable].forEach(bebida => {
             if (bebidasPredeterminadas.includes(bebida.nombre)) {
                 bebida.cantidad = 0;
@@ -30,10 +38,12 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         });
         actualizarListaBebidas();
-    }
-});
+        modalConfirm.style.display = "none";
+    });
 
-    
+    cancelarResetBtn.addEventListener("click", function() {
+        modalConfirm.style.display = "none";
+    });
 
     confirmarBtn.addEventListener("click", function() {
         const bebidaNombre = bebidaInput.value.trim();
@@ -61,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             actualizarListaBebidas();
             mesaTitulo.textContent = mesa;
-            toggleMenu();
+            toggleMenu(event);
         });
     });
 
@@ -123,7 +133,6 @@ document.addEventListener("DOMContentLoaded", function() {
             bebidasLista.appendChild(li);
         });
 
-        // Guardar datos en el localStorage
         localStorage.setItem('bebidasPorMesa', JSON.stringify(bebidasPorMesa));
     }
 
