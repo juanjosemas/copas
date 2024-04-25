@@ -65,7 +65,7 @@ h1 {
 
 .footer button#confirmar-btn {
     flex-shrink: 0; /* Evita que el botón se estire */
-    font-size: 30px
+    font-size: 30px;
     font-weight: bold;
     border-radius: 15%;
 }
@@ -75,6 +75,7 @@ h1 {
     font-size: 1.2em;
     font-weight: bold;
     border-radius: 20%;
+    font-family: Piedra;
 }
 
 .btn-delete {
