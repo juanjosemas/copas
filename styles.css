@@ -31,7 +31,8 @@ h1 {
 }
 
 #bebidas-lista li {
-    margin-bottom: 6px; /* Agrega más espacio entre las bebidas */
+    margin-bottom: 16px; /* Agrega más espacio entre las bebidas */
+    font-size: 18px;
 }
 
 
@@ -83,20 +84,23 @@ h1 {
 .btn-delete {
     margin-right: 10px; /* Separación entre el botón X y la bebida */
     font-weight: bold; /* Pone en negrita el botón X */
-    font-size: 1em; /* Ajusta el tamaño del boton */
+    font-size: 1.2em; /* Ajusta el tamaño del boton */
+    border-radius: 25%;
     box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
 }
 
 .btn-sumar {
   margin-left: 20px; /* Separación entre los botones + y - */
     font-weight: bold; /* Pone en negrita los botones + y - */
-    font-size: 1.5em; /* Ajusta el tamaño de los botones */
+    font-size: 1.2em; /* Ajusta el tamaño de los botones */
+    border-radius: 25%;
     box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
 }
 .btn-restar {
     margin-left: 20px; /* Separación entre los botones + y - */
     font-weight: bold; /* Pone en negrita los botones + y - */
     font-size: 1.2em; /* Ajusta el tamaño de los botones */
+    border-radius: 25%;
     box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
 }
 
