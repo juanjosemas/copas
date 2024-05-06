@@ -210,6 +210,9 @@ h1 {
     font-size: 20px;
     font-family: Lobster;
     border-radius: 20%;
+    border-color: red;
+    border-width: 6px;
+    border-style: double;
     box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
 }
 
@@ -219,6 +222,9 @@ h1 {
     font-size: 20px;
     font-family: Lobster;
     border-radius: 20%;
+    border-color: red;
+    border-width: 6px;
+    border-style: double;
     box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
 }
 
