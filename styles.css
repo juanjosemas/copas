@@ -163,7 +163,7 @@ h1 {
 }
 
 .menu-btn {
-    font-size: 30px;
+    font-size: 25px;
     opacity: 0.8;
     border-radius: 15px;
     box-shadow: 2px 4px 4px 4px rgba(71, 71, 71, 0.70);
@@ -229,8 +229,8 @@ h1 {
 }
 
 .ico {
-    float: left;
-    margin-top: -20px;
+    margin-top: -40px;
+    margin-left: 20px;
     border-radius: 50%;
     animation-name: logo;
     animation-duration: 3s;
